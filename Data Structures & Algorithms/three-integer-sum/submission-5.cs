@@ -1,0 +1,49 @@
+public class Solution {
+    public List<List<int>> ThreeSum(int[] nums) {
+        Array.Sort(nums);
+
+        var list = new List<List<int>>();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int l = i + 1;
+            int r = nums.Length - 1;
+
+            
+            if (i > 0 && nums[i] == nums[i - 1])
+            {
+                continue;
+            }
+            
+            while (r > l)
+            {
+                // calculated 0
+                if (nums[i] == -(nums[l] + nums[r]))
+                {
+                    list.Add(new List<int>() { nums[i], nums[l], nums[r] });
+                    while (l < r && nums[l] == nums[l + 1])
+                    {
+                        l++;
+                    }
+
+                    while (l < r && nums[r] == nums[r - 1])
+                    {
+                        r--;
+                    }
+
+                    l++;
+                    r--;
+                }
+                else if (nums[i] > (nums[l] + nums[r]))
+                {
+                    l++;
+                }
+                else if (nums[i] < (nums[l] + nums[r]))
+                {
+                    r--;
+                }
+            }
+        }
+
+        return list;
+    }
+}
